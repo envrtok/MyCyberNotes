@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
-                "mode": "preview",
+                "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-Ağlara Saldırmak.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1-Ağlar ile İlgili Bilgi Toplamak"
+              "title": "2-Ağlara Saldırmak"
             }
           }
         ]
@@ -170,8 +170,8 @@
   },
   "active": "f265948fc8a3ee3c",
   "lastOpenFiles": [
-    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-Ağlara Saldırmak.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
+    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-Ağlara Saldırmak.md",
     "TryHackMe/1-Pre Security/1.4-Linux Fundamentals/1.4.1 - Linux Fundamentals I.md",
     "TryHackMe/1-Pre Security/1.4-Linux Fundamentals",
     "TryHackMe/1-Pre Security/1.3-How to Web Works/1.3.4 - Putting All Together.md",
