@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-Ağlara Saldırmak.md",
+                "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-WEP ile Korunan Ağlara Saldırmak.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2-Ağlara Saldırmak"
+              "title": "2-WEP ile Korunan Ağlara Saldırmak"
             }
           }
         ]
@@ -92,7 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 286.5085258483887
   },
   "right": {
     "id": "7780ccfecc354b49",
@@ -181,7 +181,9 @@
   },
   "active": "7e4bbc39ebc36be1",
   "lastOpenFiles": [
-    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-Ağlara Saldırmak.md",
-    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md"
+    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-WEP ile Korunan Ağlara Saldırmak.md",
+    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
+    "TryHackMe/1-Pre Security/1.4-Linux Fundamentals/1.4.1 - Linux Fundamentals - I.md",
+    "TryHackMe/1-Pre Security/1.4-Linux Fundamentals/1.4.2 - Linux Fundamentals - II.md"
   ]
 }
