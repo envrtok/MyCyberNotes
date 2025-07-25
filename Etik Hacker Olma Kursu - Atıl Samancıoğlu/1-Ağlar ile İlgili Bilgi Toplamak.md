@@ -15,7 +15,7 @@
 	- ***🔐 ENC*** : Modemin şifrelenme türü.
 	- ***🏷️ ESSID*** : Modem adı.
 ---
-- **📄 airodump-ng --channel ... -bssid ... -write ... (interface)**
+- **📄 airodump-ng --channel ... --bssid ... --write ... (interface)**
 	- örneğin *airodump-ng --channel 12 --bssid 40:30:20:10 --write txt wlan0mon*
 	- Hedeflenen modem ile ilgili detaylı bilgi toplar.
 	- ***🆔 BSSID*** : Modemin MAC adresi.

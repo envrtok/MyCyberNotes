@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -196,11 +196,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "57851275821f375e",
+  "active": "f718242b211b7415",
   "lastOpenFiles": [
-    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/3-WPA ile Korunan Ağlara Saldırmak.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-WEP ile Korunan Ağlara Saldırmak.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
+    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/3-WPA ile Korunan Ağlara Saldırmak.md",
     "TryHackMe/1-Pre Security/1.5-Windows Fundamentals/1.5.1 - Windows Fundamentals I.md",
     "TryHackMe/1-Pre Security/1.4-Linux Fundamentals/1.4.3 - Linux Fundamentals - III.md",
     "TryHackMe/1-Pre Security/1.5-Windows Fundamentals",
