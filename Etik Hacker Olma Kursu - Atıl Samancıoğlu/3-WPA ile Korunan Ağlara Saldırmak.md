@@ -31,7 +31,6 @@
 - 🔒 Şifre **değişebilir**, sabit kalmaz.
 
 ---
-
 ### 🔍 Özetle:
 
 | Özellik       | 🧓 WEP                      | 🧑 WPA                         |
@@ -49,3 +48,25 @@
 
 ---
 
+## 🤝 Handshake Yakalamak
+- 🔐 Handshake, bir modeme bir client bağlandığında sağlanır.
+- 🛰️ airodump-ng ile hedef modem yazdırılarak dinlenirken **"WPA handshake"** ibaresi geldiğinde handshake sağlanmış anlamına gelir.
+- ❌ Eğer handshake sağlanamazsa, anlık bir **deauthantication saldırısı** ile bir client ağdan düşürülür ve tekrar bağlanması sağlanır. Böylece handshake elde edilir.
+
+## 🧠 Wordlist ile WPA Kırmak
+- 🛠️ **crunch** kullanarak wordlist oluşturulur.
+  ```bash
+  crunch <min parola uzunluğu> <max parola uzunluğu> <paroladaki karakterler> -o <txt> 
+  ```
+- 🔡 Örneğin :
+  ```bash
+  crunch 8 9 xy123 -o wordlist1.txt
+  ```
+  8 ve 9 karakter uzunluğunda, `xy123` karakterleri ile oluşabilecek tüm parola kombinasyonlarını oluşturur.
+
+- 🔓 Ardından **aircrack-ng** ile wordlist'teki tüm parolalar denenir.
+  ```bash
+  aircrack-ng <cap dosyası> -w <wordlist dosyası>
+  ```
+
+- 📁 Wordlist oluşturmak yerine, önceden en sık kullanılan parolalarla oluşturulmuş hazır wordlist'ler de kullanılabilir.
