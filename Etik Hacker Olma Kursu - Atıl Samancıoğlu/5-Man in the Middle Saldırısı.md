@@ -55,3 +55,73 @@
 - 📋 **ARP etkileşimi yapılan cihazların IP ve MAC adresleri** listelenir.
 
 - ⚠️ Eğer cihaz ARP spoofing saldırısı altındaysa, **iki farklı IP adresinde aynı MAC adresi** görülür.
+
+---
+
+## 🧠 Bettercap Aracı ile ARP Spoofing Yapmak
+
+- 📌 **Bettercap**, ağ analizinden saldırı simülasyonlarına kadar birçok işlemi yapabilen güçlü bir araçtır.
+
+- **Başlatmak için:**
+  ```bash
+  bettercap -iface <interface>
+  ```
+
+---
+
+### 🔎 Genel Kullanım Bilgisi
+
+- Mevcut modülleri ve komutları listelemek için:
+  ```bash
+  help
+  ```
+
+- Belirli bir modül hakkında detaylı bilgi almak için:
+  ```bash
+  help <modül adı>
+  ```
+
+---
+
+### 🌐 Ağdaki Cihazları Keşfetme
+
+1. **Ağda aktif cihazları keşfetmek için:**
+   ```bash
+   net.probe on
+   ```
+
+2. **Tüm tespit edilen cihazları tablo halinde listelemek için:**
+   ```bash
+   net.show
+   ```
+
+---
+
+### 🎭 ARP Spoofing Yapılandırması
+
+- **ARP Spoofing modülünü yapılandırmak için:**
+  ```bash
+  set arp.spoof.fullduplex true
+  set arp.spoof.internal true
+  set arp.spoof.target <hedef cihaz ip>
+  ```
+
+  > 💡 `help arpspoof` komutu ile bu modül hakkında daha fazla bilgi alınabilir.
+
+- **Saldırıyı başlatmak için:**
+  ```bash
+  arp.spoof on
+  ```
+
+- **Ağ trafiğini dinlemek için:**
+  ```bash
+  net.sniff on
+  ```
+
+---
+
+📝 **Not:** Bettercap’in modüler yapısı sayesinde sadece ARP Spoofing değil, DNS Spoofing, HTTPS bypass ve çok daha fazlası gerçekleştirilebilir. Ancak bu işlemler yalnızca izinli ortamlarda ve etik amaçlarla yapılmalıdır ⚠️.
+
+
+## HTTPS Logları
+- Arp Spoofing ile dinleme yapılırken kullanıcı eğer HTTP kullanan bir siteye kullanıcı adı şifre gibi bilgiler gönderirse bunlar rahatlıkla okunabilir. Ancak HTTPS ile şifreleniyorsa işler değişir.
