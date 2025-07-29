@@ -122,6 +122,36 @@
 
 📝 **Not:** Bettercap’in modüler yapısı sayesinde sadece ARP Spoofing değil, DNS Spoofing, HTTPS bypass ve çok daha fazlası gerçekleştirilebilir. Ancak bu işlemler yalnızca izinli ortamlarda ve etik amaçlarla yapılmalıdır ⚠️.
 
+---
+## 🔐 HTTPS ve Caplet’ler
 
-## HTTPS Logları
-- Arp Spoofing ile dinleme yapılırken kullanıcı eğer HTTP kullanan bir siteye kullanıcı adı şifre gibi bilgiler gönderirse bunlar rahatlıkla okunabilir. Ancak HTTPS ile şifreleniyorsa işler değişir.
+- ⚠️ **ARP Spoofing** ile ağ trafiği dinlenirken, kullanıcı bir **HTTP** sitesine kullanıcı adı, şifre gibi bilgiler gönderirse bu veriler **açık biçimde** görüntülenebilir.
+
+- Ancak **HTTPS** ile şifrelenen sitelerde durum farklıdır; bu veriler doğrudan okunamaz.
+
+---
+
+### 🎭 HSTS Hijacking (Caplet ile)
+
+- **Caplet**'ler aracılığıyla, HTTPS ile korunan sitelere erişim engellenmeye çalışılır.  
+  Amaç, kullanıcı HTTPS yerine sahte bir `.corn` uzantılı (örnek: `facebook.corn`) **HTTP** siteye yönlendirilsin.
+
+- Bu işlem için:
+  - `/usr/share/bettercap/caplets/hstshijack.cap` dosyasının içeriği düzenlenerek, hedef alınan web siteleri eklenebilir.
+  - İstenirse internette bulunan başka caplet dosyaları indirilerek `/usr/share/bettercap/caplets` dizinine yerleştirilebilir.
+
+---
+
+### 🚀 Bettercap Üzerinde Kullanım
+
+- ARP spoofing işlemi sırasında aşağıdaki komutla **hstshijack** caplet'i çalıştırılır:
+  ```bash
+  hstshijack/hstshijack
+  ```
+
+---
+
+### ⚠️ Not
+
+- Bu saldırının **başarılı ve inandırıcı şekilde çalışması genellikle zordur**.
+  - Günümüzde çoğu tarayıcı HSTS (HTTP Strict Transport Security) desteğine sahip olduğu için HTTPS dışı bağlantıları otomatik olarak engeller.
