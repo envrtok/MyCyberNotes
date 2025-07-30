@@ -8,20 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a386567aee4f1c50",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/4-Netdiscover ve nmap ile Ağ içi Tarama.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "4-Netdiscover ve nmap ile Ağ içi Tarama"
-            }
-          },
-          {
             "id": "2c3349a783f33b79",
             "type": "leaf",
             "state": {
@@ -92,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 286.5085258483887,
-    "collapsed": true
+    "width": 286.5085258483887
   },
   "right": {
     "id": "7780ccfecc354b49",
@@ -181,22 +166,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a386567aee4f1c50",
+  "active": "2c3349a783f33b79",
   "lastOpenFiles": [
+    "TryHackMe/1-Pre Security/1.2-Networking/1.2.4-Packets & Frames.md",
+    "TryHackMe/1-Pre Security/1.2-Networking/1.2.3-OSI Model.md",
+    "TryHackMe/1-Pre Security/1.2-Networking/1.2.2-Intro to LAN Topologies.md",
+    "TryHackMe/1-Pre Security/1.2-Networking/1.2.1-What is Networking.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/5-Man in the Middle Saldırısı.md",
-    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/4-Netdiscover ve nmap ile Ağ içi Tarama.md",
-    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/6-.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/1-Ağlar ile İlgili Bilgi Toplamak.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/2-WEP ile Korunan Ağlara Saldırmak.md",
     "Etik Hacker Olma Kursu - Atıl Samancıoğlu/3-WPA ile Korunan Ağlara Saldırmak.md",
-    "TryHackMe/1-Pre Security/1.2-Networking/1.2.2-Intro to LAN Topologies.md",
-    "TryHackMe/1-Pre Security/1.2-Networking/1.2.4-Packets & Frames.md",
+    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/4-Netdiscover ve nmap ile Ağ içi Tarama.md",
+    "Etik Hacker Olma Kursu - Atıl Samancıoğlu/6-.md",
     "TryHackMe/1-Pre Security/1.3-How to Web Works/1.3.4 - Putting All Together.md",
     "TryHackMe/1-Pre Security/1.3-How to Web Works/1.3.1 - DNS in Detail.md",
     "TryHackMe/1-Pre Security/1.3-How to Web Works/1.3.2 - HTTP in Detail.md",
     "TryHackMe/1-Pre Security/1.3-How to Web Works/1.3.3 - How Websites Work.md",
     "TryHackMe/1-Pre Security/1.2-Networking/1.2.5-Extending Your Network.md",
-    "TryHackMe/1-Pre Security/1.2-Networking/1.2.3-OSI Model.md",
     "TryHackMe/1-Pre Security/1.5-Windows Fundamentals/1.5.2 - Windows Fundamentals II.md",
     "TryHackMe/1-Pre Security/1.5-Windows Fundamentals/1.5.1 - Windows Fundamentals I.md",
     "görsel-yok.md",
