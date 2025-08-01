@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Etik Hacker Olma Kursu - Atıl Samancıoğlu/6-Sızma Testlerine Giriş.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 286.5085258483887
+    "width": 286.5085258483887,
+    "collapsed": true
   },
   "right": {
     "id": "7780ccfecc354b49",
