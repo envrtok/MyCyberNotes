@@ -1,0 +1,3 @@
+- msfconsole'de işimize yarayabilecek bir modül bulunmaktadır.
+- search ssh dediğimizde birçok ssh modülünün olduğunu görürüz.
+- 
