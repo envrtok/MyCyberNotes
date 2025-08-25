@@ -6,7 +6,7 @@ The password for the next level is stored in a file called **-** located in th
 
 ## 🛠️ Solution
 
-```bash
+```powershell
 ls #we saw "-" file
 cat - #we tried to read file but it was unsuccessfull
 ls -a #we looked at the file with more details and we learned that file's type is bashrc
