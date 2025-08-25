@@ -9,7 +9,6 @@ The password for the next level is stored in a file called **-** located in th
 ```powershell
 ls #we saw "-" file
 cat - #we tried to read file but it was unsuccessfull
-ls -a #we looked at the file with more details and we learned that file's type is bashrc
 cat ./- #and finally we got the password for level 2
 exit
 ssh bandit2@bandit.labs.overthewire.org -p 2220

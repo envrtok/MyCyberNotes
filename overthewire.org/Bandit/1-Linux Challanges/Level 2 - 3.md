@@ -7,7 +7,7 @@ The password for the next level is stored in a file called --spaces in this file
 ## 🛠️ Solution
 
 ```powershell
-ls -a #we saw the file called "--spaces in this filename-- and it is a bashrc"
+ls #we saw the file called "--spaces in this filename-- 
 cat ./--spaces in this filename-- #reading trying was unsuccessfull
 #file has spaces in filename, so we should put * into blanks 
 cat ./--spaces*in*this*filename-- #and finally we got the password
