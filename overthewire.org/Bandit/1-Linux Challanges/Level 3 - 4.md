@@ -7,12 +7,12 @@ The password for the next level is stored in a hidden file in the **inhere** d
 ## 🛠️ Solution
 
 ```powershell
-#there is a folder called inhere
+# we can see the inhere folder with ls
+ls
 cd inhere
-ls #nothing we can see
-ls -a #we saw the file called ..Hiding-From-You
-cat ..Hiding-From-You #and we got the password
-exit
-ssh bandit4@bandit.labs.overthewire.org -p 2220
+# when we run ls, we cannot see anything. it should be hidden file. for see the hidden files
+ls -a
+# and it is : ...Hiding-From-You
+cat ...Hiding-From-You # and it is the password
 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 ```

@@ -7,14 +7,11 @@ The password for the next level is stored in the only human-readable file in the
 ## 🛠️ Solution
 
 ```powershell
-#there is a folder called inhere
+ls
 cd inhere
-ls #we saw 10 files
-cat -file00
-cat ./-file00 #reading tryings were unsuccessfull
-cat -- -file00 #now we could read, but password is not here
-cat -- -file07 #we got the password
-exit
-ssh bandit5@bandit.labs.overthewire.org -p 2220
+ls
+# and we can see tons of files. we should read all of them
+cat ./*
+# and we can see the password into output
 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 ```

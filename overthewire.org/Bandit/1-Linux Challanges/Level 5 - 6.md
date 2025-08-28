@@ -11,14 +11,13 @@ The password for the next level is stored in a file somewhere under the **inher
 ## 🛠️ Solution
 
 ```powershell
-#there is a folder called inhere
+ls
 cd inhere
-ls #we saw 10 files
-ls * #lists all documents in files
-#there is too much files so we cannot try one by one
-grep -R . * #this command reads all files
-#and we saw the password at maybehere07/.file2
-exit
-ssh bandit6@bandit.labs.overthewire.org -p 2220
-HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+ls
+# there are tons of files and folders. (for see all files, enter "ls ./*")
+# we should find our target file with filtering.
+find ./* -readable ! -executable -size 1033c
+# and we find the file path
+cat ./maybehere07/.file2 
+HWasnPhtq9AVKe0dmk45nxy20cvUa6EG # it is the password
 ```
