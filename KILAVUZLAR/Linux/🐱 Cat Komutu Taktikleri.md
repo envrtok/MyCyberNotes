@@ -104,21 +104,3 @@ cat /dev/null > file.txt           # Dosyayı boşalt
 ```
 
 ---
-
-## 🧩 10. Base64 Decode 
-
-```bash
-# Dosyayı base64 decode edip ekrana yaz
-cat encoded.txt | base64 -d
-
-# Dosyayı decode edip başka dosyaya kaydet
-cat encoded.txt | base64 -d > decoded.txt
-
-# Binary veya human-readable mixed dosyada Base64 pattern bulup decode
-strings file.bin | grep -E "^[A-Za-z0-9+/]+={0,2}$" | base64 -d
-
-# openssl ile Base64 decode alternatifi
-cat encoded.txt | openssl base64 -d > decoded.txt
-```
-
----
