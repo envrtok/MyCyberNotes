@@ -7,5 +7,5 @@ The password for the next level is stored in the file **data.txt**, which is a 
 ## 🛠️ Solution
 
 ```powershell
-
+7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 ```
