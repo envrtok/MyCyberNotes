@@ -1,23 +1,37 @@
-## 1️⃣ Human-readable / Binary Extraction
+### 0️⃣ Dosya Türü Kontrolü ve Uzantı Değiştirme
 
 ```bash
-# Binary dosyadan ASCII stringleri çıkar
-strings file.bin
+# Dosya türünü kontrol et
+file data.txt
+file encoded.gz
+file archive.tar.bz2
 
-# Pattern filtrele
-strings file.bin | grep "FLAG"
+# Örnek çıktı:
+# data.txt: ASCII text
+# encoded.gz: gzip compressed data
+# archive.tar.bz2: bzip2 compressed data
 
-# İlk eşleşmeyi al
-strings file.bin | grep "FLAG" | head -n 1
-
-# Hex olarak gör
-xxd file.bin | less
-xxd -r hexfile.hex > decoded.bin  # Hex'i geri dönüştür
+# Dosya uzantısını değiştirmek (rename)
+mv file.old file.new
+mv encoded unknown.gz
 ```
 
 ---
 
-## 2️⃣ Base64 Decode
+### 1️⃣ Human-readable / Binary Extraction
+
+```bash
+strings file.bin
+strings file.bin | grep "FLAG"
+strings file.bin | grep "FLAG" | head -n 1
+xxd file.bin | less
+xxd -r hexfile.hex > decoded.bin
+xxd -p file.bin | tr -d '\n' | xxd -r -p > ascii_output.txt
+```
+
+---
+
+### 2️⃣ Base64 Decode
 
 ```bash
 cat encoded.txt | base64 -d
@@ -28,7 +42,7 @@ cat encoded.txt | openssl base64 -d > decoded.txt
 
 ---
 
-## 3️⃣ ROT13 / Caesar Cipher
+### 3️⃣ ROT13 / Caesar Cipher
 
 ```bash
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
@@ -39,92 +53,86 @@ python3 -c "import codecs; print(codecs.decode(open('data.txt').read(),'rot_13')
 
 ---
 
-## 4️⃣ Hex / Binary Conversion
+### 4️⃣ Hex / Binary Conversion
 
 ```bash
-# Hex encode/decode
 xxd file.bin > file.hex
 xxd -r file.hex > decoded.bin
-
-# Binary to ASCII
 xxd -p file.bin | tr -d '\n' | xxd -r -p > ascii_output.txt
 ```
 
 ---
 
-## 5️⃣ URL / Percent Encoding
+### 5️⃣ URL / Percent Encoding
 
 ```bash
-# URL decode (Python)
 python3 -c "import urllib.parse; print(urllib.parse.unquote(open('file.txt').read()))"
-
-# URL encode
 python3 -c "import urllib.parse; print(urllib.parse.quote(open('file.txt').read()))"
 ```
 
 ---
 
-## 6️⃣ UUEncode / Decode
+### 6️⃣ UUEncode / Decode
 
 ```bash
-# Decode
 uudecode file.uue
-
-# Encode
 uuencode file.txt file.txt > file.uue
 ```
 
 ---
 
-## 7️⃣ gzip / compress / tar
+### 7️⃣ gzip / bzip2 / compress / tar
 
 ```bash
 # gzip decompress
 gzip -d file.txt.gz
 gunzip file.txt.gz
 
+# bzip2 decompress
+bzip2 -d file.txt.bz2
+bunzip2 file.txt.bz2
+
 # tar decompress
 tar -xvf archive.tar
 tar -xvzf archive.tar.gz
+tar -xvjf archive.tar.bz2
 ```
 
 ---
 
-## 8️⃣ Pipe / Kombinasyon Örnekleri
+### 8️⃣ Pipe / Kombinasyon Örnekleri
 
 ```bash
-# Binary extraction + Base64 decode
 strings file.bin | grep -E "^[A-Za-z0-9+/]+={0,2}$" | base64 -d
-
-# ROT13 decode + grep
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' | grep "FLAG"
-
-# Hex extraction + decode
 xxd file.bin | grep "FLAG" | xxd -r > decoded.bin
-
-# Base64 + gzip
 cat encoded.gz | base64 -d | gunzip
+cat encoded.bz2 | bunzip2 | strings | grep "FLAG"
 ```
 
 ---
 
-## 9️⃣ Ekstra / İpuçları
+### 9️⃣ Ekstra / İpuçları
 
-- **strings** → binary dosyalardan okunabilir kısmı çıkarır
+- **file** → dosya türünü öğrenmek için
     
-- **grep** → pattern filtrelemede kritik
+- **mv** → uzantı değiştirmek veya rename
     
-- **tr** → ROT13, karakter dönüşümleri
+- **strings** → binary → ASCII extraction
     
-- **xxd / hexdump** → hex dump, binary conversion
+- **grep** → pattern filtreleme
     
-- **base64 / openssl** → Base64 encode/decode
+- **tr** → ROT13 / karakter dönüşümü
     
-- **python / urllib.parse** → URL encode/decode veya script tabanlı dönüşümler
+- **xxd / hexdump** → hex dump / binary conversion
     
-- **uudecode / uuencode** → eski CTF’lerde rastlanır
+- **base64 / openssl** → Base64 decode
     
-- **gzip / tar / zcat** → sıkıştırılmış dosya içi veriyi çıkarmak
+- **python / urllib.parse** → URL encode/decode
+    
+- **uudecode / uuencode** → eski CTF formatları
+    
+- **gzip / bzip2 / tar** → sıkıştırılmış dosyaları açmak
     
 
 ---
