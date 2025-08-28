@@ -6,7 +6,7 @@ The password for the next level is stored in a file called **readme** located 
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 cat readme #we learned password of bandit1
 exit #we logged out from bandit1
 ssh bandit1@bandit.labs.overthewire.org -p 2220

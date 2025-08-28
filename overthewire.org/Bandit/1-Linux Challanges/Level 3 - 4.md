@@ -6,7 +6,7 @@ The password for the next level is stored in a hidden file in the **inhere** d
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 # we can see the inhere folder with ls
 ls
 cd inhere

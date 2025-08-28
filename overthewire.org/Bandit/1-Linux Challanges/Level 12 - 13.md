@@ -6,7 +6,7 @@ The password for the next level is stored in the file **data.txt**, which is a 
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 mkdir ../../tmp/banditwork
 cd ../../tmp/banditwork
 cp ../../home/bandit12/data.txt data.hex

@@ -6,7 +6,7 @@ The password for the next level is stored in the file **data.txt** and is the 
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 sort data.txt | uniq -u
 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 ```

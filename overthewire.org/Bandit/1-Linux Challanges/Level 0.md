@@ -6,10 +6,10 @@ The goal of this level is for you to log into the game using SSH. The host to wh
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 ssh bandit0@bandit.labs.overthewire.org -p 2220
 ```
 - When prompted, enter the password:
-```powershell
+```bash
 bandit0
 ```

@@ -10,7 +10,7 @@ The password for the next level is stored in a file somewhere under the **inher
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 ls
 cd inhere
 ls

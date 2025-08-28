@@ -6,7 +6,7 @@ The password for the next level is stored in the file **data.txt** in one of t
 
 ## 🛠️ Solution
 
-```powershell
+```bash
 strings data.txt | grep "=="
 FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 ```
