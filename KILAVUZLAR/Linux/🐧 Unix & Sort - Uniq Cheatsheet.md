@@ -108,9 +108,3 @@ awk '{print $1}' file.txt | sort | uniq -c | sort -nr  # En çok geçen ilk süt
     
 - **cut/awk/tr/head/tail** → metin parçalama ve ön filtreleme
     
-
----
-
-İstersen bunu da **CTF / günlük kullanım odaklı tek taş gibi .md cheatsheet** hâline getirip sana verebilirim; böylece `find + cat + grep + sort/uniq` hepsi tek dosyada hazır olur.
-
-Bunu hazırlayayım mı?
