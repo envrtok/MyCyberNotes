@@ -1,9 +1,0 @@
-- Sadece yerel ağda değil, tüm kullanıcıları storm breaker ile kandırmak için ngrok konfigürasyonlarına ihtiyaç duyarız.
-- ngrok.com'a kayıt olunur ve giriş yapılır.
-- Açılan siteden ngrok indirilir. İnen zip dosyası dışarı çıkartılır.
-- Sitede bulunan ./ngrok config add-authtoken (sizin tokeniniz) komutu ve ngrokun bulunduğu klasörde terminalde çalıştırılır. Böylece token bilgisayara kaydedilir.
-- Ardından ./ngrok 2525 komutu ile ngrok 2525 portunda çalışmaya başlar.
-- sudo python3 st.py ile storm breaker başlatılır
-- http://localhost:2525 adresinde username admin password admin girilerek modül arayüzüne erişilir.
-- ngrok panelinde forwarding kısmındaki diğer link ile de modül arayüzünde dünyanın her yerinden erişilebilir.
-- Arayüzdeki linkler hedef kişiye atılarak linke erişmeleri sağlanır ve istenen bilgiler ele geçilir
