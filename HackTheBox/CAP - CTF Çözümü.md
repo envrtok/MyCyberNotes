@@ -73,5 +73,3 @@ sh linpeas.sh
 - 🔑 Root olduktan sonra root klasöründen txt dosyasını aç ve flagi al ✅  
 
 ---
-
-💡 Bu rehber, HTB üzerinde **adım adım makineye bağlanma, bilgi toplama, analiz ve yetki yükseltme** süreçlerini kapsar.
