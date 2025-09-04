@@ -1,82 +1,69 @@
-## 🔹 1. Temel
+## 🔹 1. Modlar & Kullanım
 
-```bash
-gobuster -h                        # Yardım
-gobuster <mode> -u URL -w wordlist # Genel kullanım
-```
-
-Modlar:
-
-- `dir` → Dizin & dosya brute force
-    
-- `dns` → Subdomain brute force
-    
-- `vhost` → Virtual host brute force
-    
-- `s3` → AWS S3 bucket arama
-    
-- `fuzz` → Fuzzing (parametre/dosya adı vs.)
-    
+|Mod|Açıklama|Örnek|
+|---|---|---|
+|`dir`|Web dizin ve dosya brute force|`gobuster dir -u http://<ip>/ -w wordlist.txt`|
+|`vhost`|Virtual host brute force|`gobuster vhost -u http://site.com -w vhosts.txt`|
+|`dns`|Subdomain brute force|`gobuster dns -d site.com -w subdomains.txt`|
+|`s3`|AWS S3 bucket arama|`gobuster s3 -w s3-buckets.txt`|
+|`fuzz`|Fuzzing (parametre/dosya)|`gobuster fuzz -u "http://<ip>/FUZZ" -w words.txt`|
 
 ---
 
-## 🔹 2. Dizin / Dosya Tarama (dir mode)
+## 🔹 2. Wordlist Yolları – CTF Ready
 
-```bash
-gobuster dir -u http://<ip>/ -w wordlist.txt
-gobuster dir -u http://<ip>/ -w wordlist.txt -x php,html,txt    # Uzantı denemesi
-gobuster dir -u http://<ip>/ -w wordlist.txt -t 50              # Thread sayısı
-gobuster dir -u http://<ip>/ -w wordlist.txt -q                 # Sessiz mod
-gobuster dir -u http://<ip>/ -w wordlist.txt -s 200,204,301,302 # Belirli status kodları
-gobuster dir -u http://<ip>/ -w wordlist.txt -b 404             # 404 hariç göster
-gobuster dir -u http://<ip>/ -w wordlist.txt -e                 # Tam URL göster
+### 🔸 Dizin / Dosya (dir mode)
+
+```text
+/usr/share/wordlists/dirb/common.txt
+/usr/share/wordlists/dirb/big.txt
+/usr/share/seclists/Discovery/Web-Content/common.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt
+/usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
+/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt
+/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt
+```
+
+### 🔸 Uzantı listesi
+
+```text
+.php,.html,.txt,.bak,.old,.inc
+```
+
+### 🔸 Subdomain / DNS (dns mode)
+
+```text
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt
+/usr/share/seclists/Discovery/DNS/best-dns.txt
+```
+
+### 🔸 Virtual Host (vhost mode)
+
+```text
+/usr/share/seclists/Discovery/DNS/vhosts.txt
+/usr/share/seclists/Discovery/DNS/vhosts-medium.txt
+```
+
+### 🔸 Parametre / Fuzzing (fuzz mode)
+
+```text
+/usr/share/seclists/Fuzzing/parameter-names.txt
+/usr/share/seclists/Fuzzing/xss-payloads.txt
+/usr/share/seclists/Fuzzing/sql-injection/SQLi.txt
+```
+
+### 🔸 S3 Bucket (s3 mode)
+
+```text
+/usr/share/seclists/Discovery/Web-Content/s3-buckets-top1000.txt
+/usr/share/seclists/Discovery/Web-Content/s3-buckets-all.txt
 ```
 
 ---
 
-## 🔹 3. Sanal Host (vhost mode)
-
-```bash
-gobuster vhost -u http://<ip>/ -w subdomains.txt
-gobuster vhost -u http://site.com -w vhosts.txt -t 50
-```
-
-👉 CTF’de sık kullanılan, özellikle `Host` header bruteforce için.
-
----
-
-## 🔹 4. DNS / Subdomain (dns mode)
-
-```bash
-gobuster dns -d site.com -w subdomains.txt
-gobuster dns -d site.com -w subdomains.txt -i         # IP adresini de göster
-gobuster dns -d site.com -w subdomains.txt -r 8.8.8.8 # Özel DNS resolver
-```
-
----
-
-## 🔹 5. AWS S3 Bucket (s3 mode)
-
-```bash
-gobuster s3 -w s3-buckets.txt
-```
-
-👉 Çoğu CTF’de çıkmaz ama cloud temalı olanlarda işine yarayabilir.
-
----
-
-## 🔹 6. Fuzzing (fuzz mode)
-
-```bash
-gobuster fuzz -u "http://<ip>/FUZZ" -w words.txt
-gobuster fuzz -u "http://<ip>/page.php?FUZZ=1" -w params.txt
-```
-
-👉 Parametre, endpoint veya dosya ismi fuzzing için.
-
----
-
-## 🔹 7. Faydalı Parametreler
+## 🔹 3. Faydalı Parametreler
 
 ```bash
 -u <url>            # Hedef URL
@@ -92,60 +79,60 @@ gobuster fuzz -u "http://<ip>/page.php?FUZZ=1" -w params.txt
 
 ---
 
-## 🔹 8. Wordlist Önerileri
+## 🔹 4. CTF Workflow – Strateji
 
-- `/usr/share/seclists/Discovery/Web-Content/`
-    
-- `/usr/share/wordlists/dirb/common.txt`
-    
-- `raft-large-files.txt`
-    
-- `raft-large-directories.txt`
-    
-- `subdomains-top1million-5000.txt`
-    
-
----
-
-## 🔹 9. CTF Workflow – Strateji
-
-### 🟢 1. Hızlı keşif
+### 🟢 1. Hızlı dizin taraması
 
 ```bash
-gobuster dir -u http://<ip>/ -w common.txt -q -t 50
+gobuster dir -u http://<ip>/ -w /usr/share/wordlists/dirb/common.txt -q -t 50
 ```
 
-👉 Hedefte en bilinen dizin/dosyaları hızlıca bul.
+- Sadece en yaygın 100 dizin/dosya
+    
 
-### 🟢 2. Uzantılar ekle
+### 🟢 2. Uzantıları dene
 
 ```bash
-gobuster dir -u http://<ip>/ -w common.txt -x php,html,txt
+gobuster dir -u http://<ip>/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -x php,html,txt
 ```
 
-👉 Özellikle webshell/flag saklama için `.php` ve `.txt` kritik.
-
-### 🟢 3. Geniş wordlist denemesi
+### 🟢 3. Büyük wordlist denemesi
 
 ```bash
-gobuster dir -u http://<ip>/ -w directory-list-2.3-medium.txt -t 50
+gobuster dir -u http://<ip>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50
 ```
-
-👉 İlk taramada çıkmayan endpoint’leri yakalayabilirsin.
 
 ### 🟢 4. Subdomain / Vhost keşfi
 
 ```bash
-gobuster vhost -u http://site.com -w vhosts.txt
-gobuster dns -d site.com -w subdomains.txt
+gobuster vhost -u http://site.com -w /usr/share/seclists/Discovery/DNS/vhosts.txt
+gobuster dns -d site.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
 ```
-
-👉 Özellikle CTF’lerde gizli panel veya admin login genelde subdomain’de çıkar.
 
 ### 🟢 5. Parametre fuzzing
 
 ```bash
-gobuster fuzz -u "http://site.com/page.php?FUZZ=1" -w params.txt
+gobuster fuzz -u "http://site.com/page.php?FUZZ=1" -w /usr/share/seclists/Fuzzing/parameter-names.txt
 ```
 
-👉 Gizli GET parametreleri bulup SQLi, RCE gibi açığa gidebilirsin.
+### 🟢 6. S3 bucket kontrolü (cloud-themed CTF)
+
+```bash
+gobuster s3 -w /usr/share/seclists/Discovery/Web-Content/s3-buckets-top1000.txt
+```
+
+---
+
+✅ Bu haliyle:
+
+- **Tüm modlar** + örnekler var
+    
+- **Wordlist yolları** CTF-ready ve detaylı
+    
+- **Workflow** mantıklı sırada (hafif → detaylı → subdomain → fuzz → cloud)
+    
+
+---
+
+İstersen ben bunu **Redis + Nmap + Gobuster için tek “CTF Network Recon Cheatsheet”** hâline getirip tek PDF’de toparlayayım, tablolu ve print-friendly.  
+Bunu yapayım mı?
