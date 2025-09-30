@@ -1,138 +1,147 @@
-## 🔹 1. Modlar & Kullanım
+## 🚀 TEMEL KULLANIM
+```bash
+# Temel dizin tarama
+gobuster dir -u http://hedefsite.com -w wordlist.txt
 
-|Mod|Açıklama|Örnek|
-|---|---|---|
-|`dir`|Web dizin ve dosya brute force|`gobuster dir -u http://<ip>/ -w wordlist.txt`|
-|`vhost`|Virtual host brute force|`gobuster vhost -u http://site.com -w vhosts.txt`|
-|`dns`|Subdomain brute force|`gobuster dns -d site.com -w subdomains.txt`|
-|`s3`|AWS S3 bucket arama|`gobuster s3 -w s3-buckets.txt`|
-|`fuzz`|Fuzzing (parametre/dosya)|`gobuster fuzz -u "http://<ip>/FUZZ" -w words.txt`|
+# SSL ile tarama
+gobuster dir -u https://hedefsite.com -w wordlist.txt
 
----
+# Belirli uzantılar ile tarama
+gobuster dir -u http://hedefsite.com -w wordlist.txt -x php,html,txt
+```
 
-## 🔹 2. Wordlist Yolları – CTF Ready
+## 📁 DİZİN/DOSYA TARAMA (dir)
+```bash
+# Basit dizin tarama
+gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt
 
-### 🔸 Dizin / Dosya (dir mode)
+# Özel uzantılar ile
+gobuster dir -u http://hedef.com -w wordlist.txt -x php,html,js,txt,bak
 
-```text
+# Özel header ekleme
+gobuster dir -u http://hedef.com -w wordlist.txt -H "Authorization: Bearer token123"
+
+# Thread sayısı belirleme
+gobuster dir -u http://hedef.com -w wordlist.txt -t 50
+
+# Zaman aşımı ayarı
+gobuster dir -u http://hedef.com -w wordlist.txt --timeout 10s
+
+# Status code filtreleme
+gobuster dir -u http://hedef.com -w wordlist.txt -s 200,204,301,302,307,401,403
+
+# Sonuçları dosyaya yazma
+gobuster dir -u http://hedef.com -w wordlist.txt -o results.txt
+
+# Proxy kullanma
+gobuster dir -u http://hedef.com -w wordlist.txt -p http://proxy:8080
+
+# Özel kullanıcı agent
+gobuster dir -u http://hedef.com -w wordlist.txt -a "Mozilla/5.0 Custom"
+```
+
+## 🌐 VHOST/VIRTUAL HOST TARAMA (vhost)
+```bash
+# Vhost tarama
+gobuster vhost -u http://hedef.com -w subdomains.txt
+
+# Vhost tarama (base domain ile)
+gobuster vhost -u http://hedef.com -w subdomains.txt -b hedef.com
+
+# HTTPS vhost tarama
+gobuster vhost -u https://hedef.com -w subdomains.txt
+```
+
+## 🔍 DNS TARAMA (dns)
+```bash
+# DNS subdomain tarama
+gobuster dns -d hedef.com -w subdomains.txt
+
+# Özel DNS sunucusu
+gobuster dns -d hedef.com -w subdomains.txt -r 8.8.8.8
+
+# Show IP addresses
+gobuster dns -d hedef.com -w subdomains.txt -i
+
+# Concurrent threads
+gobuster dns -d hedef.com -w subdomains.txt -t 30
+```
+
+## 🗂️ S3 BUCKET TARAMA (s3)
+```bash
+# S3 bucket tarama
+gobuster s3 -w bucket-names.txt
+```
+
+## ⚙️ GELİŞMİŞ AYARLAR
+```bash
+# Recursive tarama (dikkatli kullanın!)
+gobuster dir -u http://hedef.com -w wordlist.txt -r
+
+# Expanded mode (daha fazla detay)
+gobuster dir -u http://hedef.com -w wordlist.txt -e
+
+# No progress gösterme
+gobuster dir -u http://hedef.com -w wordlist.txt -q
+
+# Pattern eşleme
+gobuster dir -u http://hedef.com -w wordlist.txt -p "/admin/*"
+
+# Cookie ekleme
+gobuster dir -u http://hedef.com -w wordlist.txt -c "session=abc123"
+
+# Delay between requests
+gobuster dir -u http://hedef.com -w wordlist.txt -d 100ms
+```
+
+## 🎯 PRATİK ÖRNEKLER
+```bash
+# Hızlı tarama
+gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt -t 30 -x php,txt,html
+
+# Kapsamlı tarama
+gobuster dir -u http://hedef.com -w /usr/share/wordlists/dirb/big.txt -t 50 -x php,html,js,txt,bak,old -s 200,301,302,403 -e
+
+# Subdomain keşfi
+gobuster dns -d hedef.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -t 50 -i
+
+# Vhost tarama örneği
+gobuster vhost -u https://hedef.com -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -t 30
+```
+
+## 📊 ÇIKTI FORMATLARI
+```bash
+# JSON çıktı
+gobuster dir -u http://hedef.com -w wordlist.txt -o results.json -f json
+
+# Normal çıktı
+gobuster dir -u http://hedef.com -w wordlist.txt -o results.txt
+
+# MD format
+gobuster dir -u http://hedef.com -w wordlist.txt -o results.md -f md
+```
+
+## ⚠️ ÖNEMLİ PARAMETRELER
+| Parametre | Açıklama |
+|-----------|----------|
+| `-u` | Hedef URL |
+| `-w` | Wordlist dosyası |
+| `-t` | Thread sayısı (default: 10) |
+| `-x` | Dosya uzantıları |
+| `-s` | Gösterilecek status kodları |
+| `-b` | Blacklist status kodları |
+| `-e` | Expanded mode |
+| `-q` | Quiet mode |
+| `-o` | Çıktı dosyası |
+| `-f` | Çıktı formatı |
+
+## 🔧 YAYGIN WORDLİSTLER
+```bash
 /usr/share/wordlists/dirb/common.txt
 /usr/share/wordlists/dirb/big.txt
-/usr/share/seclists/Discovery/Web-Content/common.txt
-/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt
-/usr/share/seclists/Discovery/Web-Content/raft-large-files.txt
-/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt
-/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
-/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt
+/usr/share/wordlists/dirbuster/directory-list-*.txt
+/usr/share/wordlists/SecLists/Discovery/Web-Content/*
+/usr/share/wordlists/SecLists/Discovery/DNS/*
 ```
 
-### 🔸 Uzantı listesi
-
-```text
-.php,.html,.txt,.bak,.old,.inc
-```
-
-### 🔸 Subdomain / DNS (dns mode)
-
-```text
-/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
-/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt
-/usr/share/seclists/Discovery/DNS/best-dns.txt
-```
-
-### 🔸 Virtual Host (vhost mode)
-
-```text
-/usr/share/seclists/Discovery/DNS/vhosts.txt
-/usr/share/seclists/Discovery/DNS/vhosts-medium.txt
-```
-
-### 🔸 Parametre / Fuzzing (fuzz mode)
-
-```text
-/usr/share/seclists/Fuzzing/parameter-names.txt
-/usr/share/seclists/Fuzzing/xss-payloads.txt
-/usr/share/seclists/Fuzzing/sql-injection/SQLi.txt
-```
-
-### 🔸 S3 Bucket (s3 mode)
-
-```text
-/usr/share/seclists/Discovery/Web-Content/s3-buckets-top1000.txt
-/usr/share/seclists/Discovery/Web-Content/s3-buckets-all.txt
-```
-
----
-
-## 🔹 3. Faydalı Parametreler
-
-```bash
--u <url>            # Hedef URL
--w <wordlist>       # Wordlist dosyası
--t <threads>        # Thread sayısı (default 10)
--x <exts>           # Uzantılar (php,html,txt)
--s <codes>          # İlgilenilen status kodları
--b <codes>          # Hariç tutulacak kodlar
--o <file>           # Sonuç çıktısı
--q                  # Sessiz mod
--e                  # Tam URL göster
-```
-
----
-
-## 🔹 4. CTF Workflow – Strateji
-
-### 🟢 1. Hızlı dizin taraması
-
-```bash
-gobuster dir -u http://<ip>/ -w /usr/share/wordlists/dirb/common.txt -q -t 50
-```
-
-- Sadece en yaygın 100 dizin/dosya
-    
-
-### 🟢 2. Uzantıları dene
-
-```bash
-gobuster dir -u http://<ip>/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -x php,html,txt
-```
-
-### 🟢 3. Büyük wordlist denemesi
-
-```bash
-gobuster dir -u http://<ip>/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50
-```
-
-### 🟢 4. Subdomain / Vhost keşfi
-
-```bash
-gobuster vhost -u http://site.com -w /usr/share/seclists/Discovery/DNS/vhosts.txt
-gobuster dns -d site.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
-```
-
-### 🟢 5. Parametre fuzzing
-
-```bash
-gobuster fuzz -u "http://site.com/page.php?FUZZ=1" -w /usr/share/seclists/Fuzzing/parameter-names.txt
-```
-
-### 🟢 6. S3 bucket kontrolü (cloud-themed CTF)
-
-```bash
-gobuster s3 -w /usr/share/seclists/Discovery/Web-Content/s3-buckets-top1000.txt
-```
-
----
-
-✅ Bu haliyle:
-
-- **Tüm modlar** + örnekler var
-    
-- **Wordlist yolları** CTF-ready ve detaylı
-    
-- **Workflow** mantıklı sırada (hafif → detaylı → subdomain → fuzz → cloud)
-    
-
----
-
-İstersen ben bunu **Redis + Nmap + Gobuster için tek “CTF Network Recon Cheatsheet”** hâline getirip tek PDF’de toparlayayım, tablolu ve print-friendly.  
-Bunu yapayım mı?
+**Not:** Her zaman etik hacking prensiplerine uyun ve yalnızca sahip olduğunuz sistemlerde test yapın! 🛡️
