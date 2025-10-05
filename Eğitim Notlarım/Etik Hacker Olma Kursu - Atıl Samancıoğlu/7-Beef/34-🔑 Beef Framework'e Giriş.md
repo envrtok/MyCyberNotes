@@ -20,7 +20,7 @@ cd /opt/beef
 - Tarayıcıdan bu adrese gidilir: `http://[saldırgan-ip]:3000/ui/panel`
 - Varsayılan giriş bilgileri: **beef** / **beef**
 ---
-### **🎣 TEMEL OLTA LAMA YÖNTEMİ**
+### **🎣 TEMEL OLTALAMA YÖNTEMİ**
 
 #### **📡 Web Sunucusu Hazırlığı**
 ```bash
