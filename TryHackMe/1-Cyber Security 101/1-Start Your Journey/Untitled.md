@@ -1,1 +1,0 @@
-# Areas of Defensive Security
