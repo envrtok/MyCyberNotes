@@ -37,7 +37,7 @@ drwxr-xr-x 2 tryhackme tryhackme 4096 May 10 2021 folder4
 
 #### **👥 4th Column:** Group Name
 
-#### **📏 5th Column:** File Size (Byte
+#### **📏 5th Column:** File Size (Byte)
 
 #### **📅 6th Column:** Last Modification Date & Time
 
