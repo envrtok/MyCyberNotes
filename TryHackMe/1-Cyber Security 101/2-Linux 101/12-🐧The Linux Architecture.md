@@ -1,11 +1,3 @@
-Of course! Let's spice up that Linux summary with some emojis! 🎉
-
-Here is the 4-layer Linux OS summary, now with more visual flair! ✨
-
-***
-
-### **The Linux Architecture 🐧: A Emoji-Powered Guide!**
-
 #### **1. Hardware Layer 💻🔌**
 *   **The physical stuff you can touch!**
 *   **Includes:** 🧠 CPU, 🧮 RAM, 💾 Hard Drives, 📡 Network Cards, ⌨️ Keyboard, 🖱️ Mouse.
