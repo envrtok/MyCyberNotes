@@ -1,51 +1,39 @@
-## **🔍 Searching by Name**
+The `find` command is used for finding files by filtering.
 
-| Command | Description | Example |
-| :--- | :--- | :--- |
-| `find (path) -name (pattern)` | Searchs all file and gives the file with given name 🔦 | `find . -name myfile.txt` 📄 |
-| `find (path) -iname (pattern)` | Same with -name, without case sensetive 🅰️🅱️ | `find . -iname MyFile.TXT` 🔤 |
-| `find (path) -path (*/pattern/*)` | Searches the entire path for the pattern. Finds any item located **inside** a directory whose name matches pattern. 📂 | `find . -path */myfolder/*` 🗂️ |
+*   `*` means "everything." It can be used with all parameters.
+*   `2>/dev/null` blocks error messages. 🚫
 
 ---
 
-## **📁 Searching by Type**
+### **Common Usage & Parameters** ⚙️
 
-| **Option** | **Description** | **Example** |
-| :--- | :--- | :--- |
-| `-type f` | Searches for regular files 📄 | `find /home -type f` 🏠 |
-| `-type d` | Searches for directories 📂 | `find . -type d` 📁 |
-| `-type l` | Searches for symbolic links 🔗 | `find /usr -type l` ⚡ |
+#### **1. Basic Search by Name** 📛
+**Command:** `find <path> -name <name>`
 
----
+*   **`<path>`**: The directory to search in. It can be a path or:
+    *   `.` : Current path 📁
+    *   `..` : Parent path ↩️
+    *   `/` : Whole system 🖥️
+*   **`-name`**: Filters by the exact file name.
 
-## **⏰ Searching by Time**
+**Examples:**
+*   `find ../myfolder/* -name passwords.txt`
+*   `find . -name \*.txt 2>/dev/null`
 
-| **Option** | **Description** | **Example** |
-| :--- | :--- | :--- |
-| `-mtime [n]` | Finds files that were last modified `n` days ago 📅 | `find . -mtime -7` (last 7 days) 🆕 |
-| `-atime [n]` | Finds files that were last accessed `n` days ago 👀 | `find /var/log -atime +30` (over 30 days) 🗑️ |
-| `-ctime [n]` | Finds files whose status was last changed `n` days ago 🔄 | `find . -ctime 1` (exactly 1 day) ⏳ |
-| `-mmin [n]` | Finds files last modified `n` minutes ago ⏱️ | `find . -mmin -60` (last hour) 🕐 |
+#### **2. Filter by File Type & Check Content** 📄
+**Command:** `-type f -exec file {} \;`
 
----
+*   Finds which files are human-readable. 👀
 
-## **📏 Searching by Size**
+#### **3. Filter by Size** 📏
+**Command:** `-size <size><unit>`
 
-| **Option** | **Description** | **Example** |
-| :--- | :--- | :--- |
-| `-size [n]c` | Finds files that are exactly `n` bytes in size 🔢 | `find . -size 1024c` (exactly 1KB) 📊 |
-| `-size +[n]k` | Finds files larger than `n` kilobytes 📈 | `find /var -size +100M` (over 100MB) 🚀 |
-| `-size -[n]M` | Finds files smaller than `n` megabytes 📉 | `find . -size -10k` (under 10KB) 📥 |
-| `-empty` | Finds empty files and directories 🫗 | `find . -type f -empty` 🎯 |
+*   Filters by a given byte value. The units are:
+    *   `c` : byte 🔹
+    *   `k` : kilobyte 🔸
+    *   `M` : megabyte 🟨
+    *   `G` : gigabyte 🟧
 
----
-
-## **🔐 Searching by Permissions & Ownership**
-
-| **Option** | **Description** | **Example** |
-| :--- | :--- | :--- |
-| `-user [username]` | Finds files owned by the specified user 👤 | `find . -user john` 👨‍💻 |
-| `-group [groupname]` | Finds files belonging to the specified group 👥 | `find /etc -group admin` 🛡️ |
-| `-perm [mode]` | Finds files with the specified permissions 🔒 | `find . -perm 644` (rw-r--r--) 📋 |
-
----
+#### **4. Filter by User and Group** 👥
+*   **`-user <user>`**: Filters files by owner. 👨‍💼
+*   **`-group <group>`**: Filters files by group. 🏢
