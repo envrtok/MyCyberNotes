@@ -1,0 +1,5 @@
+cd "https://github.com/envrtok/MyCyberNotes"
+Copy-Item "C:\Users\Enver Tok\OneDrive\Belgeler\OBSIDIAN\CYBER\*" -Destination "." -Recurse -Force
+git add .
+git commit -m "Auto backup $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+git push origin main
