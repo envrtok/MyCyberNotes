@@ -97,6 +97,7 @@
 
 ### **💡 Pro Tips** 
 - Combine commands with `&&` for powerful workflows 🔗⚡
+- `history` shows all previous commands in current sessions 💕
 - Use `-f` flag carefully - it forces deletion without asking! ⚠️🎯
 - `mv` can both move AND rename files - double duty! 🎪
 - Use `Ctrl + C` to stop any running command 🛑
