@@ -12,6 +12,8 @@
 
 ### **📄 Viewing & Creating Files**
 - `cat (document path)` : reads the document 👀
+- `head -n (line number) (document path)` : gives first n lines of document 👀
+- `tail -n (line number) (document path)` : gives last n lines of document 👀
 - `touch (document name)` : creates a new document 🆕
 - `mkdir (folder name)` : creates a new folder 🆕📁
 - `file (document)` : gives the type of document 📊

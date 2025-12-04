@@ -113,6 +113,9 @@ gpg --armor --encrypt --recipient friend@example.com file.txt
 # 🤖 Automatic output (with original filename)
 gpg --decrypt encrypted_file.gpg
 
+# Asks for password, if normally don't
+gpg --decrypt --pinentry-mode loopback mcskidy_note.txt.gpg
+
 # 🎯 Specify output file
 gpg --output decrypted_file.txt --decrypt encrypted_file.gpg
 ```
