@@ -1,1 +1,1 @@
-![[CYBER/6.Media & Other/Photos/Pasted image 20251130165039.png]]
+![[CYBER/7.Media & Other/Photos/Pasted image 20251130165039.png]]
