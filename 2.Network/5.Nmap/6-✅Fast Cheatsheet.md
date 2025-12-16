@@ -23,7 +23,8 @@ We explored how **Nmap** helps analysts discover hosts, identify services, detec
 ## 🧩 Service & OS Detection
 
 - `-O` → OS detection
-- `-sV` → Service + version detection
+- `-sV` → enables **service and version detection**, meaning it actively probes open ports with known fingerprints to identify the exact application and version running on each service.
+- `--script=banner` → connects to open TCP ports and captures the initial text response (banner) from services to quickly reveal version or service information.
 - `-A` → All-in-one (OS + version + traceroute)
 
 ---

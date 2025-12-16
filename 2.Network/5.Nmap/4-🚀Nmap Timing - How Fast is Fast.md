@@ -7,14 +7,14 @@ Fast scans may trigger IDS/firewalls, while slow scans reduce detection but take
 
 Nmap offers **six timing modes**:
 
-|Timing|Name|Behavior|Example Duration (100 ports)|
-|---|---|---|---|
-|`-T0`|Paranoid|Very slow, stealthy|~9.8 hours|
-|`-T1`|Sneaky|Slow, avoids detection|~27.5 minutes|
-|`-T2`|Polite|Moderate, reduces load|~40.5 seconds|
-|`-T3`|Normal|Default speed|~0.15 seconds|
-|`-T4`|Aggressive|Faster, riskier|~0.13 seconds|
-|`-T5`|Insane|Maximum speed, very noisy|(not shown, but fastest)|
+| Timing | Name       | Behavior                  | Example Duration (100 ports) |
+| ------ | ---------- | ------------------------- | ---------------------------- |
+| `-T0`  | Paranoid   | Very slow, stealthy       | ~9.8 hours                   |
+| `-T1`  | Sneaky     | Slow, avoids detection    | ~27.5 minutes                |
+| `-T2`  | Polite     | Moderate, reduces load    | ~40.5 seconds                |
+| `-T3`  | Normal     | Default speed             | ~0.15 seconds                |
+| `-T4`  | Aggressive | Faster, riskier           | ~0.13 seconds                |
+| `-T5`  | Insane     | Maximum speed, very noisy | (not shown, but fastest)     |
 
 👉 Example usage:
 
