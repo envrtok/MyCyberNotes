@@ -1,0 +1,1 @@
+- 2 ya da daha fazla cihazın haberleştiği ortama networ
