@@ -1,4 +1,4 @@
-## Critical System Folders for Directory Traversal
+
 | **Location**                  | **Description**                                                                                                                                                   |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/etc/issue`                  | contains a message or system identification to be printed before the login prompt.                                                                                |
