@@ -1,0 +1,3 @@
+- Server-side request forgery
+	- Regular SSRF
+	- Blind SSRF
