@@ -14,6 +14,7 @@ sudo apt autoremove              # Remove unused dependency packages
 ```bash
 apt list --upgradable            # Show packages with available updates
 apt list --installed             # Show all installed packages
+apt-mark showmanual
 apt search <keyword>             # Search for a package
 apt show <package>               # Show details about a package
 ```
